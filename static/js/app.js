@@ -72,6 +72,22 @@ function init(){
                 d3.select(".panel-body").append("p").text(`${key} ${value}`);
                 });
             };
+
+            //Guage Chart
+            var wfreq = element.wfreq;
+
+            var data3 = [
+                {
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: wfreq,
+                    title: { text: `ID# ${element.id} Weekly Washing Frequency` },
+                    type: "indicator",
+                    mode: "gauge+number"
+                }
+            ];
+            
+            var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+            Plotly.newPlot('gauge', data3, layout);
         });
 
     });     
@@ -145,18 +161,33 @@ function updatePlotly(){
             };
         });
 
-
-
-
-        // 
+        // Demographics
         var individualDemographic = data.metadata;
         individualDemographic.forEach(function(element) {
     
         if(element.id == dataset){
+            // Demographics
             d3.select(".panel-body").html(" ");                      //clears previous data displayed
             Object.entries(element).forEach(function([key, value]) {
             d3.select(".panel-body").append("p").text(`${key} ${value}`);
             });
+
+            //Guage Chart
+            var wfreq = element.wfreq;
+
+            var data3 = [
+                {
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: wfreq,
+                    title: { text: `ID# ${element.id} Weekly Washing Frequency` },
+                    type: "indicator",
+                    mode: "gauge+number"
+                }
+            ];
+            
+            var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+            
+            Plotly.newPlot('gauge', data3, layout);
         };
         });
 
